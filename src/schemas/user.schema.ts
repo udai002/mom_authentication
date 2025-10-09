@@ -7,7 +7,11 @@ export const user = z.object({
     photo:z.string().optional() ,
     refreshToken:z.string().optional() , 
     password:z.string().optional() ,
-    isActive:z.boolean()
+    isActive:z.boolean(),
+    passwordResetToken:z.number().optional(),
+    // passwordResetTokenExpires:z.string().optional(),
+    // passwordChangedAt:z.string()
+    
 })
 
 export type UserInput = z.infer<typeof user>
