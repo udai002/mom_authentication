@@ -9,11 +9,15 @@ const ForgotPasswords = new ForgotPassword()
 const ReserPasswords = new ReserPassword()
 
 
-    
+
 router.get("/user" , userControllers.getUsers)
 router.post("/create" , userControllers.createUser)
 router.post("/forgot" , ForgotPasswords.forgotPswd)
 router.post("/reset",ReserPasswords.resetPassword)
+router.post("/signup/request-otp", userControllers.requestSignupOtp);
+router.post("/signup/verify-otp", userControllers.verifySignupOtp);
+router.post("/login/request-otp",userControllers.SignIn);
+router.post("/login/verify-otp",userControllers.verifyLoginOtp)
 
 
 export default router
