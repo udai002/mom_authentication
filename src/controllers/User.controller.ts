@@ -194,14 +194,20 @@ class UserController {
     }
 
     if (Number(parsedOtp) == Number(otp)) {
-      const token = jwt.sign({ id: findUser._id }, process.env.JWT_SECRET, {
+       const payload = {
+        id: findUser._id,
+        roleId: findUser.roleId,
+        clusterId: findUser.clusterId,
+        storeId: findUser.storeId,
+      };
+      const token = jwt.sign({ payload }, process.env.JWT_SECRET, {
         expiresIn: "12h",
       });
 
       const rediesTocken = await client.setEx(
         `user:${token}`,
         43200,
-        JSON.stringify({ id: findUser._id })
+        JSON.stringify({ payload})
       );
 
       console.log("This is token", rediesTocken);
