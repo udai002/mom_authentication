@@ -10,8 +10,11 @@ const PermissionsSchema = new Schema<permissions>({
         type:Boolean,
         required: true,
         default:false
-
     },
+    service:{
+        type:String , 
+        required:true
+    }
 
 })
 
