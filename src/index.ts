@@ -6,6 +6,7 @@ import DBConnect from './config/dbConnect.js'
 import ErrorHandler from './middleware/ErrorHandler.js'
 import { connectRedisClient } from './config/RedisClient.js'
 import UserRoutes from './routes/User.routes.js'
+import permissionsrouter from './routes/permissions.routes.js'
 
 dotenv.config()
 const port = process.env.PORT
@@ -20,6 +21,7 @@ app.use(cors({
 
 //routes
 app.use('/api' , UserRoutes)
+app.use('/api/permission', permissionsrouter)
 
 app.use(ErrorHandler)
 
