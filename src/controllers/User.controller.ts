@@ -124,7 +124,7 @@ class UserController {
 
     const checkPassword = await bcrypt.compare(password, findUser.password);
 
-    const isMatch = await bcrypt.compare(password, findUser.password);
+    // const isMatch = await bcrypt.compare(password, findUser.password);
     
     // if(password!=findUser.password)
     // {
@@ -132,9 +132,9 @@ class UserController {
 
     // }
 
-    console.log("checkPassword", isMatch);
+    console.log("checkPassword", checkPassword);
 
-    if (!isMatch) {
+    if (!checkPassword) {
       throw new ApiError("User password not match", 400, false);
     }
 

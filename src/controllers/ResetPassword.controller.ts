@@ -4,8 +4,7 @@ import UserModel from "../models/user.model.js";
 import TryCatch from "../utils/TryCatch.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import { fa } from "zod/locales";
-
+import { fa } from "zod/locales"
 
 class RsetPassword {
   resetPassword = TryCatch(async (req, res) => {
@@ -36,9 +35,9 @@ class RsetPassword {
         throw new ApiError("user not found",401,false)
 
     }
-    // const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    user.password = newPassword
+    user.password = hashedPassword
     user.passwordResetToken = undefined;
     user.passwordResetTokenExpires = undefined;
     user.passwordChangedAt = Date.now();
