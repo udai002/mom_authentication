@@ -2,6 +2,7 @@ import express from 'express'
 import UserController from '../controllers/User.controller.js'
 import ForgotPassword from '../controllers/ForgotPassword.controller.js'
 import ReserPassword from '../controllers/ResetPassword.controller.js'
+import RolememberController from '../controllers/Rolemember.Controller.js'
 
 const router =  express.Router()
 const userControllers = new UserController()
@@ -9,6 +10,10 @@ const ForgotPasswords = new ForgotPassword()
 const ReserPasswords = new ReserPassword()
 
 
+const RolememberActions=new RolememberController();
+
+router.post('/create' , RolememberActions.CreateRolemember)
+router.get('/get' , RolememberActions.getRolemembers)
 
 router.get("/user" , userControllers.getUsers)
 router.post("/create" , userControllers.createUser)
