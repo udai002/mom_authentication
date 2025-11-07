@@ -8,7 +8,7 @@ export const permissionSchema=z.object({
 export const role=z.object({
   roleId:z.string(),
   roleName:z.string(),
-  permissions:z.array(permissionSchema),
+  permissions:z.array(permissionSchema).optional(),
 });
 
 export type RoleInput = z.infer<typeof role>;

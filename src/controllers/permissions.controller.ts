@@ -31,17 +31,38 @@ class permissionsControllers {
         res.json(new ApiResponse("Data fetched successfully", 200, permissionDataById));
     });
 
+ 
 
-   updatePermissionsById = TryCatch(async (req, res) => {
+
+updatePermissionsById = TryCatch(async (req, res) => {
     const { id } = req.params;
-    if (!id) {
-        throw new ApiError("id is required", 400, false);
+    const { permissionId, status } = req.body;
+
+    if (!id || !permissionId) {
+        throw new ApiError("id and permissionId are required", 400, false);
     }
-    const updateById = await permissional.findByIdAndUpdate(id,req.body);
+
+    const updateById = await permissional.findOneAndUpdate(
+        {
+            _id: id,
+            "permissions.permissionId": permissionId
+        },
+        {
+            $set: { 
+                "permissions.$.status": status
+            }
+        },
+        {
+            new: true,          // return the updated document
+            runValidators: true // ensure schema validation
+        }
+    );
+
     if (!updateById) {
-        throw new ApiError("Permission not found", 404, false);
+        throw new ApiError("Role or Permission not found", 404, false);
     }
-    res.json(new ApiResponse("Data updated successfully", 200, updateById));
+
+    res.json(new ApiResponse("Permission updated successfully", 200, updateById));
 });
 
 

@@ -22,7 +22,7 @@ const roleSchema = new Schema<IPermission>({
       status: {
         type: String,
         enum: ["Read", "Write", "None"],
-        default: "None",
+        default: "Read",
         required: true,
       },
     },

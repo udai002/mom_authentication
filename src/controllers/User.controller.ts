@@ -166,7 +166,7 @@ class UserController {
 
     console.log("Lgin OTP email sent:", info.response);
 
-    res.json(new ApiResponse("Data Successfully fetched", 200, info.response));
+    res.json(new ApiResponse("Data Successfully fetched", 200, { email }));
   });
 
   verifyLoginOtp = TryCatch(async (req, res) => {
